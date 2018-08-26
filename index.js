@@ -2,6 +2,7 @@
 const path = require('path');
 const os = require('os');
 const fs = require('graceful-fs');
+const writeFileAtomic = require('write-file-atomic');
 const makeDir = require('make-dir');
 const xdgBasedir = require('xdg-basedir');
 const dotProp = require('dot-prop');
