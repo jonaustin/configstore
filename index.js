@@ -4,7 +4,6 @@ const os = require('os');
 const fs = require('graceful-fs');
 const makeDir = require('make-dir');
 const xdgBasedir = require('xdg-basedir');
-const writeFileAtomic = require('write-file-atomic');
 const dotProp = require('dot-prop');
 const uniqueString = require('unique-string');
 
@@ -42,8 +41,7 @@ class Configstore {
 
 			// Empty the file if it encounters invalid JSON
 			if (error.name === 'SyntaxError') {
-				writeFileAtomic.sync(this.path, '', writeFileOptions);
-				return {};
+				error.message = `${error.message}\nSyntax error in json\n`;
 			}
 
 			throw error;
